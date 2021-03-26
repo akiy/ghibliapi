@@ -21,7 +21,6 @@ const showdata = function(datas) {
         let score = document.createElement('p');
         score.setAttribute('class', 'card__score');
 
-
         title.textContent = data.title;
         original_title.textContent = data.original_title;
         description.textContent = data.description;
@@ -48,19 +47,18 @@ fetch("https://ghibliapi.herokuapp.com/films/")
 
         showdata(data);
 
-        // let modal =   document.querySelectorAll('.card__modal');
-
         document.querySelectorAll('.card__title').forEach(function(cardtitle){
             cardtitle.addEventListener('click', function(e){
-                console.log(e.target.nextSibling.firstChild);
                 e.target.nextSibling.classList.add('visible');
                 e.target.nextSibling.firstChild.classList.add('show');
+                document.querySelector('body').style.overflow = 'hidden';
             });
         });
 
         document.addEventListener('click', function(e){
             if (e.target.getAttribute('class') === 'card__modal visible') {
                 e.target.classList.remove('visible');
+                document.querySelector('body').style.overflow = 'auto';
             }
         });
 
